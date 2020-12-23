@@ -62,24 +62,24 @@ describe(`${CREATE_POST_STORY_URL}#Story:CreatePost(?br=wip)-BasicWorkflow`, () 
                     await snsFeedPage.waitForTimeout(500)
                 }
 
-                // wait maskbook inject post dialog hint
+                // wait post dialog hint to be injected
                 await snsFeedPage.waitForSelector(sns.postDialogHintSelector)
 
-                // click the hint button open maskbook post composing view
+                // click the hint button open the post composing view
                 const hintButton = await snsFeedPage.waitForFunction(
                     `document.querySelector('${sns.postDialogHintSelector}').shadowRoot.querySelector('button')`,
                 )
-                await (hintButton as any).click()
+                await(hintButton as any).click()
                 await snsFeedPage.waitForTimeout(500)
 
-                // wait maskbook inject post dialog modal
+                // wait post dialog modal to be injected
                 await snsFeedPage.waitForSelector(sns.postDialogModalSelector)
 
                 // type plain text
                 const textTextarea = await snsFeedPage.waitForFunction(
                     `document.querySelector('${sns.postDialogModalSelector}').shadowRoot.querySelector('[data-testid="text_textarea"]')`,
                 )
-                await (textTextarea as any).type('mask')
+                await(textTextarea as any).type('mask')
                 await snsFeedPage.waitForTimeout(500)
 
                 // designates recipients
@@ -90,7 +90,7 @@ describe(`${CREATE_POST_STORY_URL}#Story:CreatePost(?br=wip)-BasicWorkflow`, () 
                     .asElement()
                     ?.evaluate((e) => /MuiChip-colorPrimary/.test(e.className))
                 if (!everyoneGroupChipChecked) {
-                    await (everyoneGroupChip as any).click()
+                    await(everyoneGroupChip as any).click()
                     await snsFeedPage.waitForTimeout(500)
                 }
 
@@ -102,7 +102,7 @@ describe(`${CREATE_POST_STORY_URL}#Story:CreatePost(?br=wip)-BasicWorkflow`, () 
                     .asElement()
                     ?.evaluate((e) => /MuiChip-colorPrimary/.test(e.className))
                 if (enableImageMode !== imageChipChecked) {
-                    await (imageChip as any).click()
+                    await(imageChip as any).click()
                     await snsFeedPage.waitForTimeout(500)
                 }
 
@@ -113,7 +113,7 @@ describe(`${CREATE_POST_STORY_URL}#Story:CreatePost(?br=wip)-BasicWorkflow`, () 
                 const finishButton = await snsFeedPage.waitForFunction(
                     `document.querySelector('${sns.postDialogModalSelector}').shadowRoot.querySelector('[data-testid="finish_button"]')`,
                 )
-                await (finishButton as any).click()
+                await(finishButton as any).click()
                 await snsFeedPage.waitForTimeout(5000)
 
                 // validate text
